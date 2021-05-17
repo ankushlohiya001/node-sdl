@@ -1,4 +1,4 @@
 # node-sdl
 sdl bindings for nodeJs
 
-thanks to @mcchatman8009 (original author)
+thanks to @mcchatman8009 for base
