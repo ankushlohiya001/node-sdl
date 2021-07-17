@@ -1,6 +1,6 @@
 {
   "name": "node-sdl",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "node-sdl bindings",
   "main": "index.js",
   "scripts": {
@@ -13,9 +13,9 @@
   "author": "kushlohiya",
   "license": "ISC",
   "dependencies": {
-    "ffi-napi": "^2.5.0",
+    "ffi-napi": "^4.0.3",
     "ref-array-di": "^1.2.2",
-    "ref-napi": "^3.0.1",
+    "ref-napi": "^3.0.2",
     "ref-union-di": "^1.0.1"
   }
 }

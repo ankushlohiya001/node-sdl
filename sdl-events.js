@@ -82,6 +82,11 @@ function SDL_PollEvent(sdlEvent) {
 }
 exports.SDL_PollEvent = SDL_PollEvent;
 
+function SDL_FlushEvent(sdlEvent) {
+  return SDL.SDL_FlushEvent(sdlEvent);
+}
+exports.SDL_FlushEvent = SDL_FlushEvent;
+
 function createEventFilterFunction(filter) {
   return exports.SDL_EventFilter.toPointer(filter);
 }
@@ -98,7 +103,7 @@ function SDL_EventState(flag, value) {
 exports.SDL_EventState = SDL_EventState;
 var SDL_eventaction;
 (function(SDL_eventaction) {
-  SDL_eventaction[SDL_eventaction["SDL_ADDEVEN"] = 0] = "SDL_ADDEVEN";
+  SDL_eventaction[SDL_eventaction["SDL_ADDEVENT"] = 0] = "SDL_ADDEVENT";
   SDL_eventaction[SDL_eventaction["SDL_PEEKEVENT"] = 1] = "SDL_PEEKEVENT";
   SDL_eventaction[SDL_eventaction["SDL_GETEVENT"] = 2] = "SDL_GETEVENT";
 })(SDL_eventaction = exports.SDL_eventaction || (exports.SDL_eventaction = {}));
