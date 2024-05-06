@@ -1,3 +1,6 @@
-# node-sdl-canvas
+# node-sdl
 
-In progress as always... ;)
+SDL bindings for nodejs,
+
+currently works on linux,
+windows support on the way
