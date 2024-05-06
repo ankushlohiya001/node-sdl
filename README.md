@@ -1,4 +1,3 @@
-# node-sdl
-sdl bindings for nodeJs
+# node-sdl-canvas
 
-thanks to @mcchatman8009 for base
+In progress as always... ;)
