@@ -1,3 +1,3 @@
-const Window = require("./lib/window.js");
+const App = require("./lib/app.js");
 
-module.exports = Window;
+module.exports = App;
