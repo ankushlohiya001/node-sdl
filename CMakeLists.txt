@@ -2,6 +2,10 @@ cmake_minimum_required(VERSION 3.9)
 cmake_policy(SET CMP0042 NEW)
 set (CMAKE_CXX_STANDARD 11)
 
+# used to make nvim able to intercept linked directories
+# ie. header files will be `not found` without compile_commands.json
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
 project (node-sdl)
 include_directories(${CMAKE_JS_INC})
 file(GLOB SOURCE_FILES
@@ -42,4 +46,5 @@ string(REGEX REPLACE "[\r\n\"]" "" SDL_FLAGS ${SDL_FLAGS})
 target_include_directories(${PROJECT_NAME} PRIVATE ${NODE_ADDON_API_DIR})
 set(CMAKE_C_FLAGS ${SDL_FLAGS})
 set(CMAKE_CXX_FLAGS ${SDL_FLAGS})
+
 
