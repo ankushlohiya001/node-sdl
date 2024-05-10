@@ -12,6 +12,7 @@ file(GLOB SOURCE_FILES
   "src/sdl.cc"
   "src/video.cc"
   "src/events.cc"
+  "src/audio.cc"
 )
 add_library(${PROJECT_NAME} SHARED ${SOURCE_FILES} ${CMAKE_JS_SRC})
 set_target_properties(${PROJECT_NAME} PROPERTIES PREFIX "" SUFFIX ".node")
@@ -44,6 +45,8 @@ execute_process(COMMAND sdl2-config --cflags
 string(REGEX REPLACE "[\r\n\"]" "" SDL_FLAGS ${SDL_FLAGS})
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${NODE_ADDON_API_DIR})
+
+set(SDL_FLAGS "${SDL_FLAGS} -lSDL2_mixer")
 set(CMAKE_C_FLAGS ${SDL_FLAGS})
 set(CMAKE_CXX_FLAGS ${SDL_FLAGS})
 

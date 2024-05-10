@@ -1,4 +1,5 @@
 #include "sdl.h"
+#include "audio.h"
 #include "events.h"
 #include "video.h"
 
@@ -84,6 +85,7 @@ Napi::Object Init(Napi::Env env, Napi::Object exports) {
 
   Video::Init(env, exports);
   Events::Init(env, exports);
+  AudioSet::Init(env, exports);
 
   return exports;
 }
