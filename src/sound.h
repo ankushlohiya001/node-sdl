@@ -60,6 +60,8 @@ public:
 
   void stop() { Mix_HaltChannel(channel); }
 
+  bool is_playing() { return Mix_Playing(channel); }
+
   int get_volume() { return Mix_Volume(channel, -1); }
 
   void set_volume(double volume) {
@@ -73,6 +75,10 @@ public:
 
   void set_position(int angle, int distance) {
     Mix_SetPosition(channel, angle, distance);
+  }
+
+  void on_finish(void (*channel_finished)(int)) {
+    Mix_ChannelFinished(channel_finished);
   }
 
   Mix_Chunk *get_chunk() { return chunk; }

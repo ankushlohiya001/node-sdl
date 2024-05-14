@@ -17,6 +17,10 @@ public:
   void resume(const Napi::CallbackInfo &);
   void stop(const Napi::CallbackInfo &);
 
+  Napi::Value is_loaded(const Napi::CallbackInfo &);
+
+  Napi::Value is_playing(const Napi::CallbackInfo &);
+
   void set_volume(const Napi::CallbackInfo &, const Napi::Value &);
   Napi::Value get_volume(const Napi::CallbackInfo &);
 

@@ -11,6 +11,16 @@ AudioSet::Short::Short(const Napi::CallbackInfo &info) : ObjectWrap(info) {
   }
 }
 
+Napi::Value AudioSet::Short::is_loaded(const Napi::CallbackInfo &info) {
+  bool loaded = audio == NULL;
+  return Napi::Boolean::New(info.Env(), loaded);
+}
+
+Napi::Value AudioSet::Short::is_playing(const Napi::CallbackInfo &info) {
+  bool playing = audio->is_playing();
+  return Napi::Boolean::New(info.Env(), playing);
+}
+
 void AudioSet::Short::play(const Napi::CallbackInfo &info) {
   if (info[0].IsUndefined()) {
     audio->play();
@@ -56,6 +66,8 @@ Napi::Function AudioSet::Short::GetClass(Napi::Env &env) {
       env, "Audio",
       {
           InstanceAccessor<&Short::get_volume, &Short::set_volume>("volume"),
+          InstanceAccessor<&Short::is_loaded>("isLoaded"),
+          InstanceAccessor<&Short::is_playing>("isPlaying"),
           InstanceMethod("play", &Short::play),
           InstanceMethod("pause", &Short::pause),
           InstanceMethod("resume", &Short::resume),
