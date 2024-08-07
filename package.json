@@ -18,8 +18,11 @@
   "license": "ISC",
   "dependencies": {
     "bindings": "^1.5.0",
+    "keycode": "^2.2.1"
+  },
+  "devDependencies": {
+    "node-addon-api": "^8.0.0",
     "cmake-js": "^7.3.0",
-    "keycode": "^2.2.1",
-    "node-addon-api": "^8.0.0"
+    "typescript": "^5.5.4"
   }
 }
