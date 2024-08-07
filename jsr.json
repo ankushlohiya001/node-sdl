@@ -1,0 +1,5 @@
+{
+  "name": "@ankush/node-sdl",
+  "version": "2.0.1",
+  "exports": "./index.js"
+}
