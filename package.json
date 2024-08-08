@@ -2,12 +2,11 @@
   "name": "node-sdl",
   "version": "2.0.1",
   "description": "sdl bindings for nodejs !!",
-  "main": "mod.js",
+  "main": "binding.js",
   "scripts": {
     "configure": "cmake-js configure",
     "build": "cmake-js build",
-    "tsc": "tsc",
-    "install": "cmake-js rebuild && tsc"
+    "install": "cmake-js rebuild"
   },
   "repository": {
     "type": "git",
@@ -22,7 +21,6 @@
   },
   "devDependencies": {
     "node-addon-api": "^8.0.0",
-    "cmake-js": "^7.3.0",
-    "typescript": "^5.5.4"
+    "cmake-js": "^7.3.0"
   }
 }
