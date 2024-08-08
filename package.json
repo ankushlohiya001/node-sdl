@@ -2,12 +2,12 @@
   "name": "node-sdl",
   "version": "2.0.1",
   "description": "sdl bindings for nodejs !!",
-  "main": "index.js",
+  "main": "mod.js",
   "scripts": {
     "configure": "cmake-js configure",
     "build": "cmake-js build",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "install": "cmake-js rebuild"
+    "tsc": "tsc",
+    "install": "cmake-js rebuild && tsc"
   },
   "repository": {
     "type": "git",
