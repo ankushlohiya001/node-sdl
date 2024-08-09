@@ -5,6 +5,7 @@ export function wasInit(): boolean
 export function quit(): void
 
 export class Window {
+  id: number
   position: { x: number, y: number } | [number, number]
   size: { w: number, h: number }
   get cursor(): string
