@@ -292,7 +292,7 @@ void Video::Window::updateSurface(const Napi::CallbackInfo &info) {
   int h = info[4].As<Napi::Number>();
 
   SDL_Surface *pix_surf = SDL_CreateRGBSurfaceWithFormatFrom(
-      pixels, w, h, 32, w * 4, SDL_PIXELFORMAT_ARGB8888);
+      pixels, w, h, 32, w * 4, SDL_PIXELFORMAT_ABGR8888);
 
   SDL_SetSurfaceBlendMode(pix_surf, SDL_BLENDMODE_BLEND);
 
