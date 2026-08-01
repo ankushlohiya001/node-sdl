@@ -1,5 +1,0 @@
-{
-  "name": "@ankush/node-sdl",
-  "version": "3.0.2",
-  "exports": "./binding.js"
-}

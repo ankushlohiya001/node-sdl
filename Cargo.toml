@@ -1,0 +1,23 @@
+
+[package]
+edition = "2021"
+name = "node_sdl"
+version = "0.1.0"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+napi-derive = "3.0.0"
+
+[dependencies.napi]
+version = "3.0.0"
+features = ["napi10"]
+
+[build-dependencies]
+napi-build = "2"
+
+[profile.release]
+lto = true
+codegen-units = 1
+strip = "symbols"

@@ -1,46 +1,87 @@
-# node-sdl
+# `@napi-rs/package-template`
 
-node-sdl is a Node.js addon providing bindings for SDL (Simple DirectMedia Layer) using the `node-addon-api`. This allows developers to utilize SDL functionality within Node.js applications, enabling the development of multimedia applications, games, and interactive software.
+![https://github.com/napi-rs/package-template/actions](https://github.com/napi-rs/package-template/workflows/CI/badge.svg)
 
-## Features
+> Template project for writing node packages with napi-rs.
 
-- **Cross-Platform**: SDL provides a consistent API across multiple platforms, including Windows, macOS, Linux, and more.
-- **Low-Level Access**: Gain direct access to audio, keyboard, mouse, joystick, and graphics hardware.
-- **Performance**: Utilize hardware-accelerated graphics and audio for optimal performance.
-- **Node.js Integration**: Seamlessly integrate SDL functionality into Node.js applications using the `node-addon-api`.
+# Usage
 
-## Installation
+1. Click **Use this template**.
+2. **Clone** your project.
+3. Run `pnpm install` to install dependencies.
+4. Run `pnpm napi rename -n [@your-scope/package-name] -b [binary-name]` command under the project folder to rename your package.
 
-Before installing node-sdl, ensure you have the necessary prerequisites:
-
-- Node.js (version 18 or higher)
-- npm (Node.js package manager)
-- SDL development libraries
-
-To install node-sdl, use npm:
+## Install this test package
 
 ```bash
-npm install node-sdl
+pnpm add @napi-rs/package-template
 ```
 
 ## Usage
 
-Here's a simple example demonstrating how to use node-sdl to create a window:
+### Build
 
-```javascript
-const app = require("node-sdl");
+After `pnpm build` command, you can see `package-template.[darwin|win32|linux].node` file in project root. This is the native addon built from [lib.rs](./src/lib.rs).
 
-// Create a window
-const window = app.createWindow({
-  title: "SDL Window",
-  width: 800,
-  height: 600,
-});
-// that's it
+### Test
+
+With [ava](https://github.com/avajs/ava), run `pnpm test` to testing native addon. You can also switch to another testing framework if you want.
+
+### CI
+
+With GitHub Actions, each commit and pull request will be built and tested automatically in [`node@18`, `node@20`] x [`macOS`, `Linux`, `Windows`] matrix. You will never be afraid of the native addon broken in these platforms.
+
+### Release
+
+Release native package is very difficult in old days. Native packages may ask developers who use it to install `build toolchain` like `gcc/llvm`, `node-gyp` or something more.
+
+With `GitHub actions`, we can easily prebuild a `binary` for major platforms. And with `N-API`, we should never be afraid of **ABI Compatible**.
+
+The other problem is how to deliver prebuild `binary` to users. Downloading it in `postinstall` script is a common way that most packages do it right now. The problem with this solution is it introduced many other packages to download binary that has not been used by `runtime codes`. The other problem is some users may not easily download the binary from `GitHub/CDN` if they are behind a private network (But in most cases, they have a private NPM mirror).
+
+In this package, we choose a better way to solve this problem. We release different `npm packages` for different platforms. And add it to `optionalDependencies` before releasing the `Major` package to npm.
+
+`NPM` will choose which native package should download from `registry` automatically. You can see [npm](./npm) dir for details. And you can also run `pnpm add @napi-rs/package-template` to see how it works.
+
+## Develop requirements
+
+- Install the latest `Rust`
+- Install `Node.js@16+` which fully supported `Node-API`
+- Run `corepack enable`
+
+## Test in local
+
+- pnpm
+- pnpm build
+- pnpm test
+
+And you will see:
+
+```bash
+$ ava --verbose
+
+  ✔ sync function from native code
+  ✔ sleep function from native code (201ms)
+  ─
+
+  2 tests passed
+✨  Done in 1.12s.
 ```
 
-## Contributing
+## Release package
 
-Contributions are welcome! If you find any issues or have suggestions for improvements, please feel free to open an issue or submit a pull request.
+Ensure you have set your **NPM_TOKEN** in the `GitHub` project setting.
 
-Before contributing, please review our contributing guidelines for instructions on how to contribute to the project.
+In `Settings -> Secrets`, add **NPM_TOKEN** into it.
+
+When you want to release the package:
+
+```bash
+npm version [<newversion> | major | minor | patch | premajor | preminor | prepatch | prerelease [--preid=<prerelease-id>] | from-git]
+
+git push
+```
+
+GitHub actions will do the rest job for you.
+
+> WARN: Don't run `npm publish` manually.
